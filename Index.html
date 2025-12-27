@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio - Bayu abdi satria</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <h2 class="logo">Portfolio</h2>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Skills</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h4>Hello, It's Me</h4>
+    <h1>bayu <span>abdi satria</span></h1>
+    <h3>And I am a <span id="typing"></span></h3>
+    <p>I am a computer science student</p>
+
+    <div class="social">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <button class="btn">More About Me</button>
+  </div>
+
+  <div class="hero-img">
+    <div class="glow">
+      <img src="bayu ganteng.jpg">
+    </div>
+  </div>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img">
+    <img src="bayu ganteng.jpg"style="width:280px;height:280px;border-radius:50%;">
+  </div>
+  <div class="about-text">
+    <h2>About <span>Me</span></h2>
+    <h4>bayu abdi satria</h4>
+    <p>
+      I am a Computer Science Student with a deep passion for information technology.
+      I enjoy frontend development, UI/UX design, and building responsive websites.
+    </p>
+    <button class="btn">More About Me</button>
+  </div>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <h2 class="section-title">My <span>Services</span></h2>
+
+  <div class="service-box">
+    <div class="card">
+      <i class="fas fa-code"></i>
+      <h3>UI/UX Design</h3>
+      <p>Design modern and clean interfaces.</p>
+      <button class="btn-small">Contact Me</button>
+    </div>
+
+    <div class="card">
+      <i class="faso fa-pen-nib"></i>
+      <h3>Graphic Design</h3>
+      <p>Create visual content & branding.</p>
+      <button class="btn-small">Contact Me</button>
+    </div>
+
+    <div class="card">
+      <i class="fas fa-laptop-code"></i>
+      <h3>Frontend Dev</h3>
+      <p>Build responsive websites.</p>
+      <button class="btn-small">Contact Me</button>
+    </div>
+  </div>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</section>
+
+<!-- SKILLS -->
+<meta charset="UTF-8">
+<section class="skills">
+  <h2 class="section-title">My <span>Skills</span></h2>
+
+  <div class="skills-container">
+    <div class="tech">
+      <p>HTML <span>90%</span></p>
+      <div class="bar"><div style="width:90%"></div></div>
+
+      <p>CSS <span>80%</span></p>
+      <div class="bar"><div style="width:80%"></div></div>
+
+      <p>JavaScript <span>70%</span></p>
+      <div class="bar"><div style="width:70%"></div></div>
+    </div>
+
+    <div class="pro">
+      <div class="circle">90%<br>Creativity</div>
+      <div class="circle">80%<br>Communication</div>
+      <div class="circle">85%<br>Teamwork</div>
+      <div class="circle">75%<br>Problem Solving</div>
+    </div>
+  </div>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <h2 class="section-title">Latest <span>Project</span></h2>
+
+  <div class="portfolio-grid">
+    <img src="project1.jpg">
+    <img src="project2.jpg">
+    <img src="project3.jpg">
+  </div>
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-text">
+    <h2>Contact <span>Me</span></h2>
+    <p>Let's work together</p>
+    <p>Email: bayuabdisatria@gmail.com</p>
+    <p>Phone: 081371629638</p>
+  </div>
+
+  <form class="contact-form">
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <input type="text" placeholder="Subject">
+    <textarea placeholder="Message"></textarea>
+    <button class="btn">Submit</button>
+  </form>
+<link rel="stylesheet" href="style.css" type="text/css" media="all" />
+</section>
+
+<footer>
+  developed with ❤️ by bayu abdi satria
+</footer>
+<link rel="stylesheet" href="style.css" type="text/css" media="all" />
+<script>
+const texts = [
+  "Frontend Developer",
+  "UI/UX Designer",
+  "Web Designer"
+];
+
+let count = 0;
+let index = 0;
+let currentText = "";
+let letter = "";
+
+(function type() {
+  if (count === texts.length) {
+    count = 0;
+  }
+
+  currentText = texts[count];
+  letter = currentText.slice(0, ++index);
+
+  document.getElementById("typing").textContent = letter;
+
+  if (letter.length === currentText.length) {
+    setTimeout(() => {}, 1000);
+    setTimeout(() => index--, 1000);
+  }
+
+  if (index === 0) {
+    count++;
+  }
+
+  setTimeout(type, 150);
+})();
+</script>
+</head>
+</body>
+</html>
