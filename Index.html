@@ -1,196 +1,462 @@
 <!DOCTYPE html>
-<html lang="en">
-  
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Portfolio - Bayu abdi satria</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+<meta charset="UTF-8">
+<title>Neon Blue Portfolio</title>
+
+<style>
+.profile {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 30px;
+}
+
+/* FOTO */
+.profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #00ccff;
+  z-index: 2;
+  position: relative;
+  transition: 0.4s;
+  box-shadow:
+    0 0 15px #00ccff,
+    0 0 30px #00ccff;
+}
+
+/* HOVER EFFECT */
+.profile:hover img {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 25px #00ccff,
+    0 0 50px #00ccff;
+}
+
+/* RING NEON MUTER */
+.profile::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 2px solid #00ccff;
+  border-right: 2px solid #00ccff;
+  animation: spin 3s linear infinite;
+  filter: drop-shadow(0 0 10px #00ccff);
+}
+
+/* SCAN LINE */
+.profile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    transparent,
+    rgba(0,204,255,0.3),
+    transparent
+  );
+  animation: scan 2.5s linear infinite;
+  pointer-events: none;
+}
+
+/* ANIMATIONS */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes scan {
+  from { background-position: 0 -100%; }
+  to { background-position: 0 200%; }
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px #00ccff;
+  }
+  to {
+    box-shadow: 0 0 35px #00ccff;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Courier New', monospace;
+}
+
+body {
+  background: radial-gradient(circle at top, #0a1a3f, #020816);
+  color: #00ccff;
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 20px;
+  border-bottom: 2px solid #00ccff;
+  box-shadow: 0 0 20px #00ccff;
+}
+
+nav a {
+  color: #00ccff;
+  text-decoration: none;
+  font-size: 18px;
+  position: relative;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: #00ccff;
+  transition: 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* ===== SECTION ===== */
+section {
+  display: none;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+section.active {
+  display: block;
+}
+
+.box {
+  max-width: 600px;
+  margin: auto;
+  padding: 30px;
+  border: 2px solid #00ccff;
+  box-shadow: 0 0 25px #00ccff;
+  background: rgba(0, 20, 40, 0.7);
+}
+
+/* ===== TYPING EFFECT ===== */
+.cursor::after {
+  content: "|";
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.neon-wave {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 120px;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(0,204,255,0.15) 20px,
+    rgba(0,204,255,0.15) 40px
+  );
+  animation: waveMove 10s linear infinite;
+  box-shadow: 0 -10px 30px rgba(0,204,255,0.4);
+}
+
+@keyframes waveMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.particles span {
+  position: fixed;
+  bottom: -50px;
+  width: 6px;
+  height: 6px;
+  background: #00ccff;
+  border-radius: 50%;
+  animation: floatUp linear infinite;
+  box-shadow: 0 0 10px #00ccff;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* OPENING SCREEN */
+#opening {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, #0a1a3f, #020816);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 1.5s ease forwards;
+  animation-delay: 4s;
+}
+
+#opening h1 {
+  color: #00ccff;
+  font-size: 28px;
+  text-shadow: 0 0 20px #00ccff;
+}
+
+/* FADE OUT */
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* CONTAINER BURUNG */
+.birds {
+  position: fixed;
+  bottom: 40px;
+  left: -10%;
+  width: 120%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* BURUNG */
+.bird {
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  border: 2px solid #00ccff;
+  border-color: #00ccff transparent transparent transparent;
+  border-radius: 50% 50% 0 0;
+  opacity: 0.6;
+  filter: drop-shadow(0 0 6px #00ccff);
+  animation: fly 18s linear infinite;
+}
+
+/* VARIASI POSISI & KECEPATAN */
+.bird:nth-child(1) {
+  top: 0;
+  animation-duration: 22s;
+}
+
+.bird:nth-child(2) {
+  top: 25px;
+  left: -60px;
+  animation-duration: 26s;
+  opacity: 0.4;
+}
+
+.bird:nth-child(3) {
+  top: 50px;
+  left: -120px;
+  animation-duration: 30s;
+  opacity: 0.3;
+}
+
+/* ANIMASI TERBANG */
+@keyframes fly {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(110vw);
+  }
+}
+
+/* FOTO ABOUT */
+.about-photo {
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 25px;
+  animation: swingIn 1.6s ease-out;
+  transform-origin: top center;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px; /* beda dari Home (biar unik) */
+  border: 3px solid #00ccff;
+  box-shadow:
+    0 0 15px #00ccff,
+    0 0 30px #00ccff;
+}
+
+/* ANIMASI MENGAYUN */
+@keyframes swingIn {
+  0% {
+    transform: rotate(-15deg);
+    opacity: 0;
+  }
+  40% {
+    transform: rotate(10deg);
+    opacity: 1;
+  }
+  70% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+</style>
 </head>
+<!-- OPENING SCREEN -->
+<div id="opening">
+  <h1 class="cursor" id="openingText"></h1>
+</div>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <h2 class="logo">Portfolio</h2>
-  <ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#services">Skills</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <link rel="stylesheet" href="style.css" type="text/css" media="all" />
-  </ul>
+<!-- ===== NAVBAR ===== -->
+<nav>
+  <a onclick="showSection('home')">Home</a>
+  <a onclick="showSection('about')">About</a>
+  <a onclick="showSection('skills')">Skills</a>
+  <a onclick="showSection('portfolio')">Portfolio</a>
+  <a onclick="showSection('contact')">Contact</a>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-text">
-    <h4>Hello, It's Me</h4>
-    <h1>bayu <span>abdi satria</span></h1>
-    <h3>And I am a <span id="typing"></span></h3>
-    <p>I am a computer science student</p>
+<!-- ===== HOME ===== -->
+<section id="home" class="active">
+  <div class="box">
 
-    <div class="social">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-github"></i></a>
-      <a href="#"><i class="fab fa-tiktok"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
+    <div class="profile">
+      <img src="Bayu ganteng.jpg" alt="Foto Saya">
     </div>
 
-    <button class="btn">More About Me</button>
+    <h1 class="cursor" id="homeText"></h1>
   </div>
-
-  <div class="hero-img">
-    <div class="glow">
-      <img src="bayu ganteng.jpg">
-    </div>
-  </div>
-  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
 </section>
 
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="about-img">
-    <img src="bayu ganteng.jpg"style="width:280px;height:280px;border-radius:50%;">
-  </div>
-  <div class="about-text">
-    <h2>About <span>Me</span></h2>
-    <h4>bayu abdi satria</h4>
-    <p>
-      I am a Computer Science Student with a deep passion for information technology.
-      I enjoy frontend development, UI/UX design, and building responsive websites.
-    </p>
-    <button class="btn">More About Me</button>
-  </div>
-  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
-</section>
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="box">
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <h2 class="section-title">My <span>Services</span></h2>
-
-  <div class="service-box">
-    <div class="card">
-      <i class="fas fa-code"></i>
-      <h3>UI/UX Design</h3>
-      <p>Design modern and clean interfaces.</p>
-      <button class="btn-small">Contact Me</button>
+    <!-- FOTO ABOUT -->
+    <div class="about-photo">
+      <img src="foto-about.jpg" alt="Foto About">
     </div>
 
-    <div class="card">
-      <i class="faso fa-pen-nib"></i>
-      <h3>Graphic Design</h3>
-      <p>Create visual content & branding.</p>
-      <button class="btn-small">Contact Me</button>
-    </div>
+    <p class="cursor" id="aboutText"></p>
 
-    <div class="card">
-      <i class="fas fa-laptop-code"></i>
-      <h3>Frontend Dev</h3>
-      <p>Build responsive websites.</p>
-      <button class="btn-small">Contact Me</button>
-    </div>
   </div>
-  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
 </section>
 
-<!-- SKILLS -->
-<meta charset="UTF-8">
-<section class="skills">
-  <h2 class="section-title">My <span>Skills</span></h2>
-
-  <div class="skills-container">
-    <div class="tech">
-      <p>HTML <span>90%</span></p>
-      <div class="bar"><div style="width:90%"></div></div>
-
-      <p>CSS <span>80%</span></p>
-      <div class="bar"><div style="width:80%"></div></div>
-
-      <p>JavaScript <span>70%</span></p>
-      <div class="bar"><div style="width:70%"></div></div>
-    </div>
-
-    <div class="pro">
-      <div class="circle">90%<br>Creativity</div>
-      <div class="circle">80%<br>Communication</div>
-      <div class="circle">85%<br>Teamwork</div>
-      <div class="circle">75%<br>Problem Solving</div>
-    </div>
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="box">
+    <p class="cursor" id="skillsText"></p>
   </div>
-  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
 </section>
 
-<!-- PORTFOLIO -->
-<section class="portfolio" id="portfolio">
-  <h2 class="section-title">Latest <span>Project</span></h2>
-
-  <div class="portfolio-grid">
-    <img src="project1.jpg">
-    <img src="project2.jpg">
-    <img src="project3.jpg">
+<!-- ===== PORTFOLIO ===== -->
+<section id="portfolio">
+  <div class="box">
+    <p class="cursor" id="portfolioText"></p>
   </div>
-  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-text">
-    <h2>Contact <span>Me</span></h2>
-    <p>Let's work together</p>
-    <p>Email: bayuabdisatria@gmail.com</p>
-    <p>Phone: 081371629638</p>
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="box">
+    <p class="cursor" id="contactText"></p>
   </div>
-
-  <form class="contact-form">
-    <input type="text" placeholder="Your Name">
-    <input type="email" placeholder="Your Email">
-    <input type="text" placeholder="Subject">
-    <textarea placeholder="Message"></textarea>
-    <button class="btn">Submit</button>
-  </form>
-<link rel="stylesheet" href="style.css" type="text/css" media="all" />
 </section>
 
-<footer>
-  developed with ❤️ by bayu abdi satria
-</footer>
-<link rel="stylesheet" href="style.css" type="text/css" media="all" />
 <script>
-const texts = [
-  "Frontend Developer",
-  "UI/UX Designer",
-  "Web Designer"
-];
+const texts = {
+  homeText: "Hi, I'm bayu abdi satria — dan ini web saya ⚡",
+  aboutText: "perkenalkan Saya mahasiswa dari kampus amikmahaputra .",
+  skillsText: "HTML • CSS • JavaScript • UI Neon • Typing Effect",
+  portfolioText: "Project Website • Game Mini • UI Futuristic",
+  contactText: "Email: kamu@email.com | IG: @username"
+};
 
-let count = 0;
-let index = 0;
-let currentText = "";
-let letter = "";
+function typeEffect(id, text, speed = 50) {
+  const el = document.getElementById(id);
+  el.textContent = "";
+  let i = 0;
+  const typing = setInterval(() => {
+    if (i < text.length) {
+      el.textContent += text.charAt(i);
+      i++;
+    } else {
+      clearInterval(typing);
+    }
+  }, speed);
+}
 
-(function type() {
-  if (count === texts.length) {
-    count = 0;
+function showSection(sectionId) {
+  document.querySelectorAll("section").forEach(sec => {
+    sec.classList.remove("active");
+  });
+  document.getElementById(sectionId).classList.add("active");
+
+  const textId = sectionId + "Text";
+  if (texts[textId]) {
+    typeEffect(textId, texts[textId]);
   }
+}
 
-  currentText = texts[count];
-  letter = currentText.slice(0, ++index);
-
-  document.getElementById("typing").textContent = letter;
-
-  if (letter.length === currentText.length) {
-    setTimeout(() => {}, 1000);
-    setTimeout(() => index--, 1000);
-  }
-
-  if (index === 0) {
-    count++;
-  }
-
-  setTimeout(type, 150);
-})();
+/* Load pertama */
+typeEffect("homeText", texts.homeText);
 </script>
-</head>
+<div class="neon-wave"></div>
+<script>
+const openingText = "Initializing Portfolio System...";
+let i = 0;
+
+function openingTyping() {
+  if (i < openingText.length) {
+    document.getElementById("openingText").textContent += openingText.charAt(i);
+    i++;
+    setTimeout(openingTyping, 60);
+  }
+}
+
+openingTyping();
+</script>
+<div class="birds">
+  <span class="bird"></span>
+  <span class="bird"></span>
+  <span class="bird"></span>
+</div>
+
+function showSection(sectionId) {
+  document.querySelectorAll("section").forEach(sec => {
+    sec.classList.remove("active");
+  });
+
+  const section = document.getElementById(sectionId);
+  section.classList.add("active");
+
+  // reset animasi foto about
+  if (sectionId === "about") {
+    const photo = section.querySelector(".about-photo");
+    if (photo) {
+      photo.style.animation = "none";
+      photo.offsetHeight; // trigger reflow
+      photo.style.animation = "swingIn 1.6s ease-out";
+    }
+  }
+
+  const textId = sectionId + "Text";
+  if (texts[textId]) {
+    typeEffect(textId, texts[textId]);
+  }
+}
 </body>
 </html>
